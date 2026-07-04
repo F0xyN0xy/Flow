@@ -1,0 +1,56 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Flow.App.ViewModels"
+        x:Class="Flow.App.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Flow"
+        Width="900"
+        Height="560"
+        Background="Transparent"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+          BackgroundSource="Digger"
+          TintColor="Black"
+          TintOpacity="1"
+          MaterialOpacity="0.65" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+
+    <Grid Margin="40" RowDefinitions="Auto,*,Auto">
+      <TextBlock Grid.Row="0"
+                 Text="Flow"
+                 FontSize="42"
+                 FontWeight="Bold"
+                 Foreground="White"
+                 Margin="0,0,0,8" />
+
+      <StackPanel Grid.Row="1" Spacing="12">
+        <TextBlock Text="Rocket League Companion"
+                   FontSize="18"
+                   Foreground="#AAAAAA" />
+        <TextBlock Text="{Binding StatusText}"
+                   FontSize="14"
+                   Foreground="#888888" />
+      </StackPanel>
+
+      <StackPanel Grid.Row="2"
+                  Orientation="Horizontal"
+                  HorizontalAlignment="Right"
+                  Spacing="12">
+        <Button Content="Toggle Overlay"
+                Command="{Binding ToggleOverlayCommand}" />
+        <Button Content="Settings"
+                Command="{Binding OpenSettingsCommand}" />
+      </StackPanel>
+    </Grid>
+  </Panel>
+</Window>

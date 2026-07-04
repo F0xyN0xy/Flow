@@ -1,0 +1,116 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Flow.App.ViewModels"
+        xmlns:models="using:Flow.Core.Models"
+        x:Class="Flow.App.Views.SettingsWindow"
+        x:DataType="vm:SettingsWindowViewModel"
+        Title="Settings"
+        Width="640"
+        Height="720"
+        Background="Transparent"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True">
+
+  <Design.DataContext>
+    <vm:SettingsWindowViewModel />
+  </Design.DataContext>
+
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+          BackgroundSource="Digger"
+          TintColor="Black"
+          TintOpacity="1"
+          MaterialOpacity="0.65" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+
+    <Grid Margin="40" RowDefinitions="Auto,*,Auto">
+      <TextBlock Grid.Row="0"
+                 Text="Settings"
+                 FontSize="32"
+                 FontWeight="Bold"
+                 Foreground="White"
+                 Margin="0,0,0,20" />
+
+      <ScrollViewer Grid.Row="1">
+        <StackPanel Spacing="16">
+          <!-- Appearance -->
+          <TextBlock Text="Appearance"
+                     FontSize="20"
+                     FontWeight="SemiBold"
+                     Foreground="White" />
+          <TextBlock Text="Theme"
+                     Foreground="#AAAAAA" />
+          <ComboBox HorizontalAlignment="Stretch"
+                    SelectedItem="{Binding Settings.Theme}">
+            <models:AppTheme>Light</models:AppTheme>
+            <models:AppTheme>Dark</models:AppTheme>
+            <models:AppTheme>System</models:AppTheme>
+          </ComboBox>
+
+          <TextBlock Text="Accent Color"
+                     Foreground="#AAAAAA" />
+          <TextBox Text="{Binding Settings.AccentColor}" />
+
+          <!-- Overlay -->
+          <TextBlock Text="Overlay"
+                     FontSize="20"
+                     FontWeight="SemiBold"
+                     Foreground="White"
+                     Margin="0,16,0,0" />
+          <TextBlock Text="Opacity"
+                     Foreground="#AAAAAA" />
+          <Slider Minimum="0.1"
+                  Maximum="1.0"
+                  Value="{Binding Settings.OverlayOpacity}"
+                  TickFrequency="0.05" />
+          <TextBlock Text="Scale"
+                     Foreground="#AAAAAA" />
+          <Slider Minimum="0.5"
+                  Maximum="2.0"
+                  Value="{Binding Settings.OverlayScale}"
+                  TickFrequency="0.1" />
+
+          <!-- Input -->
+          <TextBlock Text="Input"
+                     FontSize="20"
+                     FontWeight="SemiBold"
+                     Foreground="White"
+                     Margin="0,16,0,0" />
+          <TextBlock Text="Hotkey"
+                     Foreground="#AAAAAA" />
+          <TextBox Text="{Binding Settings.Hotkey}" />
+          <TextBlock Text="Controller Button"
+                     Foreground="#AAAAAA" />
+          <TextBox Text="{Binding Settings.ControllerButton}" />
+
+          <!-- General -->
+          <TextBlock Text="General"
+                     FontSize="20"
+                     FontWeight="SemiBold"
+                     Foreground="White"
+                     Margin="0,16,0,0" />
+          <CheckBox Content="Start with Windows"
+                    IsChecked="{Binding Settings.StartWithWindows}" />
+          <CheckBox Content="Minimize to Tray"
+                    IsChecked="{Binding Settings.MinimizeToTray}" />
+          <CheckBox Content="Auto Detect Rocket League"
+                    IsChecked="{Binding Settings.AutoDetectRocketLeague}" />
+        </StackPanel>
+      </ScrollViewer>
+
+      <StackPanel Grid.Row="2"
+                  Orientation="Horizontal"
+                  HorizontalAlignment="Right"
+                  Spacing="12"
+                  Margin="0,20,0,0">
+        <Button Content="Reset"
+                Command="{Binding ResetToDefaultsCommand}" />
+        <Button Content="Save"
+                Command="{Binding SaveCommand}" />
+      </StackPanel>
+    </Grid>
+  </Panel>
+</Window>

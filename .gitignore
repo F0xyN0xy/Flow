@@ -1,0 +1,33 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.db
+*.db-journal
+
+# Rider / VS Code
+.idea/
+.vscode/
+*.sln.DotSettings.user
+
+# Build outputs
+publish/
+out/
+artifacts/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+packages/
+
+# Test results
+TestResults/
